@@ -1,0 +1,75 @@
+abstract class Publisher {
+    title: string
+    author: string
+    pubYear: number
+    copies: number
+
+    static count: number = 0
+    constructor() {
+        Publisher.count++
+    }
+
+    //dat`
+    get getTitle(): string {
+        return this.title
+    }
+    //prinat`
+    set setTitle(value: string) {
+        this.title = value
+    }
+}
+class Book extends Publisher implements Reception {
+    pages: number
+    delivery(item: Publisher): void {
+
+    }
+    recieve(item: Publisher): void {
+
+    }
+}
+
+class Magazine extends Publisher {
+    issue: number
+    delivery(item: Publisher): void {
+
+    }
+    recieve(item: Publisher): void {
+
+    }
+}
+interface Reception {
+    //get publisher
+    delivery(item: Publisher): void
+    //priniat publisher
+    recieve(item: Publisher): void
+}
+class Reader extends Publisher implements Reception {
+    firstName: string
+    lastName: string
+    //massiv or spisok publisher
+    static items: Publisher[]
+
+    get getfirstName(): string {
+        return this.firstName
+    }
+    get getlastName(): string {
+        return this.lastName
+    }
+    //prinat`
+    set setfirstName(value: string) {
+        this.firstName = value
+    }
+    set setlastName(value: string) {
+        this.lastName = value
+    }
+
+    delivery(item: Publisher): void {
+        if (this.copies == 0 || Publisher.count == Reader.items.length) return
+        this.copies = this.copies - 1
+
+    }
+    recieve(item: Publisher): void {
+        this.copies = this.copies + 1
+
+    }
+}
